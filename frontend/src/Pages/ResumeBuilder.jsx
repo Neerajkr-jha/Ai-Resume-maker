@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { data, Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { dummyResumeData } from "../assets/assets";
 import {
   ArrowLeftIcon,
@@ -20,6 +20,7 @@ import ProfessionalSummaryForm from '../components/ProfessionalSummaryForm'
 import ExperienceForm from "../components/ExperienceForm";
 import EducationForm from "../components/EducationForm";
 import ProjectForm from "../components/ProjectForm";
+import SkillForm from "../components/SkillForm";
 
 function ResumeBuilder() {
   const { resumeId } = useParams();
@@ -30,7 +31,7 @@ function ResumeBuilder() {
     professional_summary: "",
     experience: [],
     education: [],
-    projects: [],
+    project: [],
     skills: [],
     template: "classic",
     accent_color: "#3B82F6",
@@ -46,7 +47,7 @@ function ResumeBuilder() {
     { id: "summary", name: "Summary", icon: FileText },
     { id: "experience", name: "Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCap },
-    { id: "projects", name: "Projects", icon: FolderIcon },
+    { id: "project", name: "Projects", icon: FolderIcon },
     { id: "skills", name: "Skills", icon: Sparkles },
   ];
 
@@ -131,18 +132,26 @@ function ResumeBuilder() {
                     <EducationForm data={resumeData.education} onChange={(data)=>setResumeData(prev=>({...prev,education:data}))}/>
                   </div>
                 )}
-                {activeSection.id === 'projects' && (
+                {activeSection.id === 'project' && (
                   <div>
                     <ProjectForm data={resumeData.project} onChange={(data)=>setResumeData(prev=>({...prev,project:data}))}/>
                   </div>
                 )}
+                {activeSection.id === 'skills' && (
+                  <div>
+                    <SkillForm data={resumeData.skills} onChange={(data)=>setResumeData(prev=>({...prev,skills:data}))}/>
+                  </div>
+                )}
                </div>
+               <button className='bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>
+                Save Changes
+               </button>
             </div>
           </div>
 
           {/* Right panel */}
           <div className="lg:col-span-7 max-lg:mt-6">
-            <div>
+            <div className="rel">
               {/* ------top buttons------ */}
             </div>
               {/* --- resume-preview --- */}

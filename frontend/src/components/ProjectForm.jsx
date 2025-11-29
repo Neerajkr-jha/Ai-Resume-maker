@@ -6,7 +6,7 @@ function ProjectForm({ data, onChange }) {
         const newProject={
             name:"",
             type:"",
-            discription:"",
+            description:"",
         };
         onChange([...data,newProject]);
     }
@@ -20,7 +20,7 @@ function ProjectForm({ data, onChange }) {
         onChange(updated)
     }
   return (
-    <div className="space-y-6">
+    <div>
       <div className='flex items-center justify-between'>
             {/* div for text(experienc) and button for Ai enhance */}
             <div>
@@ -34,8 +34,8 @@ function ProjectForm({ data, onChange }) {
         </div>
 
         <div className='space-y-4 mt-6'>
-             {data.map((project,index)=>(
-                    <div key={index} className="p-4 border border-gray-200 rounded-lg space-y-3">
+             {(data ?? []).map((project,index)=>(
+                 <div key={index} className="p-4 border border-gray-200 rounded-lg space-y-3">
                         <div className="flex justify-between items-start">
                             <h4>Project #{index+1}</h4>
                             <button onClick={()=>removeProject(index)} className="text-red-500 hover:text-red-700 transition-colors">
@@ -43,16 +43,15 @@ function ProjectForm({ data, onChange }) {
                             </button>
                         </div>
                         <div className="grid gap-3">
-                            <input type="text" value={project.name || ""} onChange={(e)=>updateEducation(index,"institution",e.target.value)} placeholder="Project name" className="px-3 py-2 text-sm rounded-lg" />
+                            <input type="text" value={project.name || ""} onChange={(e)=>updateProject(index,"name",e.target.value)} placeholder="Project name" className="px-3 py-2 text-sm rounded-lg" />
 
                             <input type="text" value={project.type || ""} onChange={(e)=>updateProject(index,"type",e.target.value)} placeholder="Project Type" className="px-3 py-2 text-sm rounded-lg" />
 
-                            <textarea rows={4} value={project.discription || ""} onChange={(e)=>updateEducation(index,"discription",e.target.value)} placeholder='discribe your Project' className="px-3 py-2 text-sm" />
+                            <textarea rows={4} value={project.description || ""} onChange={(e)=>updateProject(index,"description",e.target.value)} placeholder='discribe your Project' className="px-3 py-2 text-sm" />
 
                         </div>
-                        
                     </div>
-                ))}
+             ))}
         </div>
         
     </div>

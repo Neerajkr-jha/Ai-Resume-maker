@@ -34,7 +34,7 @@ function EducationForm({ data, onChange }) {
                 Add Education
             </button>
         </div>
-        {data.length === 0?(
+        {data.length === 0? (
             <div className="text-center py-8 text-gray-500">
                 <GraduationCap className="w-12 h-12 mx-auto mb-3 text-gray-300"/>
                 <p>No Education details added yet!</p>
