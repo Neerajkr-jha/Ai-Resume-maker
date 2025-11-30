@@ -16,13 +16,12 @@ function ResumePreview({ data, template, accentColor, classes = "" }) {
         return <ClassicTemplate data={data} accentColor={accentColor} />;
     }
   };
+
   return (
     <div className="w-full bg-gray-100">
       <div
         id="resume-preview"
-        className={
-          "border border-gray-200 print:shadow-none print:border-none" + classes
-        }
+        className={`bg-white border border-gray-200 print:w-[8.5in] print:min-h-[11in] print:shadow-none print:border-none ${classes}`}
       >
         {renderTemplate()}
       </div>
@@ -33,8 +32,7 @@ function ResumePreview({ data, template, accentColor, classes = "" }) {
             margin: 0;
           }
           @media print {
-            html,
-            body {
+            html, body {
               width: 8.5in;
               height: 11in;
               overflow: hidden;
@@ -47,13 +45,12 @@ function ResumePreview({ data, template, accentColor, classes = "" }) {
               visibility: visible;
             }
             #resume-preview {
-              position: relative;
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: auto;
-              margin: 0;
-              padding: 0;
+              position: fixed !important;
+              inset: 0 !important; /* replaces left:0, top:0 */
+              width: 8.5in !important;
+              min-height: 11in !important;
+              margin: 0 !important;
+              padding: 0 !important;
               box-shadow: none !important;
               border: none !important;
             }

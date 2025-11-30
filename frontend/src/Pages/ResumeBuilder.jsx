@@ -6,9 +6,13 @@ import {
   Briefcase,
   ChevronLeft,
   ChevronRight,
+  DownloadIcon,
+  EyeIcon,
+  EyeOffIcon,
   FileText,
   FolderIcon,
   GraduationCap,
+  Share2,
   Sparkles,
   User,
 } from "lucide-react";
@@ -61,6 +65,25 @@ function ResumeBuilder() {
       document.title = resume.title;
     }
   }, [resumeId]);
+
+  //make public / private
+  const chnageResumeVisibility= async()=>{
+    setResumeData({...resumeData,public:!resumeData.public})
+  }
+  //sharing resume
+  const handleShare=()=>{
+    const frontendUrl=window.location.href.split('/app/')[0];
+    const resumeUrl=frontendUrl+'/view/'+resumeId;
+    if(navigator.share){
+      navigator.share({url:resumeUrl,text:'My Resume', });
+    }else{
+      alert('Share not suported in this browser')
+    }
+  }
+  // download
+  const downloadResume=()=>{
+    window.print();
+  }
 
   return (
     <div>
@@ -151,8 +174,24 @@ function ResumeBuilder() {
 
           {/* Right panel */}
           <div className="lg:col-span-7 max-lg:mt-6">
-            <div className="rel">
-              {/* ------top buttons------ */}
+            {/* ------top buttons------ */}
+            <div className="relative w-full">
+              <div className="absolute bottom-3 right-0 left-0 flex items-center gap-2 justify-end">
+                {resumeData.public && 
+                (
+                  <button onClick={handleShare} className='flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-blue-100 to-blue-200 text-blue-600 rounded-xl ring-blue-300 hover:ring transition-colors border hover:border-blue-600'>
+                    <Share2 className="size-4"/>
+                    <span>Share</span>
+                  </button>
+                )}
+                <button onClick={chnageResumeVisibility} className='flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-purple-100 to-purple-200 text-purple-600 rounded-xl ring-purple-300 hover:ring transition-colors border hover:border-purple-600'>
+                  {resumeData.public ? <EyeIcon className="size-4"/> : <EyeOffIcon className="size-4"/>}
+                  {resumeData.public ? 'Public': 'Private'}
+                </button>
+                <button onClick={downloadResume} className='flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-green-100 to-green-200 text-green-600 rounded-xl ring-green-300 hover:ring transition-color border hover:border-green-600'>
+                  <DownloadIcon  className="size-4"/>
+                </button>
+              </div>
             </div>
               {/* --- resume-preview --- */}
               <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color}/>

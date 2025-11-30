@@ -16,7 +16,7 @@ export const dummyResumeData = [
         _id: "68d2a31a1c4dd38875bb037e",
         userId: "68c180acdf1775dfd02c6d87",
         title: "Alex's Resume",
-        public: true,
+        public: false,
         professional_summary: "Highly analytical Data Analyst with 6 years of experience transforming complex datasets into actionable insights using SQL, Python, and advanced visualization tools. ",
         skills: ["JavaScript", "React JS", "Full Stack Development", "Git", "GitHub", "NextJS", "Express", "NodeJS", "TypeScript"],
         experience: [
