@@ -2,6 +2,7 @@ import { Plus,Trash2 } from 'lucide-react';
 import React from 'react'
 
 function ProjectForm({ data, onChange }) {
+    data = Array.isArray(data) ? data : [];
      const addProject=()=>{
         const newProject={
             name:"",
@@ -34,7 +35,7 @@ function ProjectForm({ data, onChange }) {
         </div>
 
         <div className='space-y-4 mt-6'>
-             {(data ?? []).map((project,index)=>(
+             {data.map((project,index)=>(
                  <div key={index} className="p-4 border border-gray-200 rounded-lg space-y-3">
                         <div className="flex justify-between items-start">
                             <h4>Project #{index+1}</h4>

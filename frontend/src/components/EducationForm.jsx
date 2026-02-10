@@ -2,6 +2,7 @@ import { GraduationCap, Plus, Trash2 } from 'lucide-react';
 import React from 'react'
 
 function EducationForm({ data, onChange }) {
+    data = Array.isArray(data) ? data : [];
       const addEducation=()=>{
         const newEducation={
             institution:"",
