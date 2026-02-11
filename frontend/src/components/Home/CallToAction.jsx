@@ -8,7 +8,7 @@ function CallToAction() {
           Build a Professional That Helps You Stand Out And Get Hired. 
         </p>
         <a
-          href="https://prebuiltui.com"
+          href="https://ai-resume-builder-sigma-ivory.vercel.app/"
           className="flex items-center gap-2 rounded-3xl py-3 px-8 bg-green-600 hover:bg-green-700 transition text-white"
         >
           <span>Get Started</span>
